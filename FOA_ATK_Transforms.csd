@@ -52,7 +52,7 @@ ksmps 	= 32
 nchnls 	= 2		;FOA signals are four, don't change this
 0dbfs	= 72
 
-          ;BEGIN AMMENDMENT
+          ;BEGIN AMENDMENT
           gi_nchnls4 = 4
           ;END
 ;numerical constants  
@@ -90,7 +90,7 @@ soundfield by tumblig/rotating again.
 #define	I_ROT_M
 #
 ;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
-;warning: this macro is hardcoded to variable names, don´t change them unless you really know what you are doing.
+;warning: this macro is hardcoded to variable names, donÂ´t change them unless you really know what you are doing.
 	;precompute to save operations
 	;we don't need to compute neither cos(-theta) nor sin(-theta) since:
 	;sin(-theta)= -sin(theta) and cos(-theta)=  cos(theta)
@@ -112,7 +112,7 @@ soundfield by tumblig/rotating again.
 ;restore the soundfield, to the original direction of interest 
 ;warning1: this macro should not be used if the precedent macro is not called
 ;as it uses variables that are computed previously.
-;warning2: this macro is hardcoded to variable names, don´t change them unless you really know what you are doing.
+;warning2: this macro is hardcoded to variable names, donÂ´t change them unless you really know what you are doing.
 	;elevation tumbling
 	aXaux=		aFOAo[1]
 	aFOAo[1]=	aFOAo[1]*aCose - aFOAo[3]*aSine
