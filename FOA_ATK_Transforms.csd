@@ -49,9 +49,12 @@ variables for the transforms coefficients.
 
 sr 	= 44100
 ksmps 	= 32
-nchnls 	= 4		;FOA signals are four, don't change this
-0dbfs	= 1
+nchnls 	= 2		;FOA signals are four, don't change this
+0dbfs	= 72
 
+          ;BEGIN AMMENDMENT
+          gi_nchnls4 = 4
+          ;END
 ;numerical constants  
 gipi 		init 	4.*taninv(1.)	;the honorable PI and his family
 gipi2		init	2.*gipi
@@ -142,7 +145,7 @@ output args: aFOAo[]
 opcode 	FOArtt_a, a[], a[]ia;  
 	
 	aFOAi[], iAx, aAng  xin ;read in arguments
-	aFOAo[] init nchnls
+	aFOAo[] init gi_nchnls4
 	;precompute to save operations
 	aCosa=cos(aAng)
 	aSina=sin(aAng)
@@ -183,7 +186,7 @@ Comments (adapted from  https://github.com/ambisonictoolkit/atk-sc3/blob/master/
 opcode 	FOAdirectO_a, a[], a[]a
    
 	aFOAi[], aTheta  xin ;read in arguments
-	aFOAo[] init nchnls
+	aFOAo[] init gi_nchnls4
 	;do directivity transform along all the soundfield
 	aG0=sqrt(1 + sin(aTheta))
 	aG1=sqrt(1 - sin(aTheta))
@@ -220,7 +223,7 @@ and can be regarded as a kind of 'spatial sharpening' filter on the  selected ax
 */
 opcode 	FOAdirect_a, a[], a[]aaa
    
-	aFOAo[] init nchnls
+	aFOAo[] init gi_nchnls4
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
@@ -263,7 +266,7 @@ gain invert this distortion, distorting the image towards
 opcode 	FOAdominate_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aGain  xin ;read in arguments
-	aFOAo[] init nchnls
+	aFOAo[] init gi_nchnls4
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do dominance transform along the x axis
@@ -306,7 +309,7 @@ results in no change.
 opcode 	FOAzoom_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init nchnls	
+	aFOAo[] init gi_nchnls4	
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do zoom transform along the x axis
@@ -348,7 +351,7 @@ results in no change.
 opcode 	FOAfocus_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init nchnls	
+	aFOAo[] init gi_nchnls4	
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do focus transform along the x axis
@@ -391,7 +394,7 @@ Theta: the angle of distortion in radians, from -pi/2 to pi/2.
 opcode 	FOApush_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init nchnls	
+	aFOAo[] init gi_nchnls4	
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do push transform along the x axis
@@ -434,7 +437,7 @@ Theta: the angle of distortion in radians, from -pi/2 to pi/2.
 opcode 	FOApress_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init nchnls	
+	aFOAo[] init gi_nchnls4	
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do press transform along the x axis
@@ -469,7 +472,7 @@ iang1	=p6*gipi;
 iang2	=p7*gipi
 iseg1	=p3-0.05
 iseg2	=0.05
-arra[]	init nchnls	;input/output FOA audio signals array
+arra[]	init gi_nchnls4	;input/output FOA audio signals array
 
 aamp		linseg iamp, iseg1,iamp, iseg2,0 
 arra		diskin2	gSfilename, 1, 0,0,0,8,0
@@ -477,7 +480,7 @@ arra		diskin2	gSfilename, 1, 0,0,0,8,0
 ang		line		iang1, p3, iang2
 arra		FOArtt_a 	arra, iax, ang
 
-	outq	arra[0]*aamp, arra[1]*aamp, arra[2]*aamp, arra[3]*aamp 
+	outs	arra[0]*aamp+arra[1]*aamp, arra[2]*aamp+arra[3]*aamp 
 endin
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 instr directO_a	/*test the a-rate version of the FOAdirectO_a UDO*/ 
@@ -489,7 +492,7 @@ id1	=p3*.2
 id2	=p3*.6
 iseg1	=p3-0.05
 iseg2	=0.05
-arra[]	init nchnls	;input/output FOA audio signals array
+arra[]	init gi_nchnls4	;input/output FOA audio signals array
 
 aamp	linseg iamp, iseg1,iamp, iseg2,0
 arra	diskin2	gSfilename, 1, 0,0,0,8,0
@@ -497,7 +500,7 @@ arra	diskin2	gSfilename, 1, 0,0,0,8,0
 atheta	linseg		itheta1, id1, itheta1, id2, itheta2, id1, itheta2
 arra	FOAdirectO_a 	arra, atheta
 
-	outq	arra[0]*aamp, arra[1]*aamp, arra[2]*aamp, arra[3]*aamp 	
+	outs	arra[0]*aamp+arra[1]*aamp, arra[2]*aamp+arra[3]*aamp 	
 endin
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 instr direct_a	/*test the a-rate version of the FOAdirect_a UDO*/ 
@@ -522,7 +525,7 @@ arra	diskin2	gSfilename, 1, 0,0,0,8,0
 atheta	linseg		itheta1, id1, itheta1, id2, itheta2, id1, itheta2
 arra	FOAdirect_a 	arra, aaz, ael, atheta
 
-	outq	arra[0]*aamp, arra[1]*aamp, arra[2]*aamp, arra[3]*aamp	
+	outs	arra[0]*aamp+arra[1]*aamp, arra[2]*aamp+arra[3]*aamp	
 endin
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 instr dominate_a	/*test the a-rate version of the FOAdominate_a UDO*/ 
@@ -536,7 +539,7 @@ id1	=p3*.2
 id2	=p3*.6
 iseg1	=p3-0.05
 iseg2	=0.05
-arra[]	init nchnls	;input/output FOA audio signals array
+arra[]	init gi_nchnls4	;input/output FOA audio signals array
 ;here we don't change the direction angles, but we need to convert them to audio-rate
 ;because the UDO requires that
 aaz	=iaz
@@ -547,7 +550,7 @@ arra	diskin2	gSfilename, 1, 0,0,0,8,0
 again	linseg		igain1, id1, igain1, id2, igain2, id1, igain2
 arra	FOAdominate_a 	arra, aaz, ael, again
 
-	outq	arra[0]*aamp, arra[1]*aamp, arra[2]*aamp, arra[3]*aamp
+	outs	arra[0]*aamp+arra[1]*aamp, arra[2]*aamp+arra[3]*aamp
 endin
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 /*test the a-rate version of the FOAzoom_a, FOAfocus_a 
@@ -567,7 +570,7 @@ id1	=p3*.2
 id2	=p3*.6
 iseg1	=p3-0.05
 iseg2	=0.05
-arra[]	init nchnls	;input/output FOA audio signals array
+arra[]	init gi_nchnls4	;input/output FOA audio signals array
 ;here we don't change the direction angles, but we need to convert them to audio-rate
 ;because the UDO requires that
 aaz	=iaz
@@ -586,7 +589,7 @@ elseif(iwhich==$PUSH) then
 elseif(iwhich==$PRESS) then
 	arra	FOApress_a arra, aaz, ael, atheta
 endif
-	outq	arra[0]*aamp, arra[1]*aamp, arra[2]*aamp, arra[3]*aamp
+	outs	arra[0]*aamp+arra[1]*aamp, arra[2]*aamp+arra[3]*aamp
 endin
 
 
@@ -654,7 +657,7 @@ i	"direct_a"	+	$D2	.701	0.5	.	.5	-.5	;aiming Y
 ;			st	dur	amp	azim	elev	theta1	theta2
 i	"direct_a"	+	$D2	.701	0.	.5	.5	-.5	;aiming Z
 */
-/*
+;/*
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;FOAdominance_a tests
 ;warning: dominance gain must be in dBfs 
@@ -667,7 +670,7 @@ i	"dominate_a"	+	$D2	0.3	0.	0.	12	-12	;aiming X
 i	"dominate_a"	+	$D2	0.3	0.5	0.	12	-12	;aiming Y
 ;			st	dur	amp	azim	elev	gain1	gain2
 i	"dominate_a"	+	$D2	0.3	0.	0.5	12	-12	;aiming Z
-*/
+;*/
 /*
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;FOAzoom_a tests
