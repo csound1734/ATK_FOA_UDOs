@@ -1,3 +1,4 @@
+# Ambisonic experimentation repo for Csound
 
 ## FOA ATK Transforms.
 ### By Oscar Pablo Di Liscia.
