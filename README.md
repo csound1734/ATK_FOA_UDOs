@@ -46,7 +46,7 @@ variables for the transforms coefficients.
 ## Csound UDOs
 
 ### FOA_ATK (1.)
-* `arro[] FOArtt_a arra[], kth`
+* `arro[] FOArtt_a arri[], iX, iAng`
 
 
 ### ambisonicambi/ (2.)
