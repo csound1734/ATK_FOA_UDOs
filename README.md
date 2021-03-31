@@ -1,6 +1,7 @@
 
 ## FOA ATK Transforms.
-### By Oscar Pablo Di Liscia. ### Research Program STSEAS, Escuela Universitaria de Musica, UNQ, Argentina. 
+### By Oscar Pablo Di Liscia.
+<br>Research Program STSEAS, Escuela Universitaria de Musica, UNQ, Argentina. 
 PICT 2015-2604 FONCyT Argentina
  
 Csound UDOs for First Order B-Format Ambisonic Transforms.
