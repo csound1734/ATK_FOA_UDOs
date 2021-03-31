@@ -65,7 +65,7 @@ iang1	=p6*gipi;
 iang2	=p7*gipi
 iseg1	=p3-0.05
 iseg2	=0.05
-arra[]	init gi_nchnls4	;input/output FOA audio signals array
+arra[]	init nchnls	;input/output FOA audio signals array
 	;please see comments in file FOA_ATK_Transforms.udo of the temporary (not-idel) use of gi_chnls4. It's value is 4.
 aamp		linseg iamp, iseg1,iamp, iseg2,0 
 arra		diskin2	gSfilename, 1, 0,0,0,8,0
@@ -85,7 +85,7 @@ id1	=p3*.2
 id2	=p3*.6
 iseg1	=p3-0.05
 iseg2	=0.05
-arra[]	init gi_nchnls4	;input/output FOA audio signals array
+arra[]	init nchnls	;input/output FOA audio signals array
 	;please see comments in file FOA_ATK_Transforms.udo of the temporary (not-idel) use of gi_chnls4. It's value is 4.
 aamp	linseg iamp, iseg1,iamp, iseg2,0
 arra	diskin2	gSfilename, 1, 0,0,0,8,0
@@ -107,7 +107,7 @@ id1	=p3*.2
 id2	=p3*.6
 iseg1	=p3-0.05
 iseg2	=0.05
-arra[]	init gi_nchnls4	;input/output FOA audio signals array
+arra[]	init nchnls	;input/output FOA audio signals array
 	;please see comments in file FOA_ATK_Transforms.udo of the temporary (not-idel) use of gi_chnls4. It's value is 4.
 ;here we don't change the direction angles, but we need to convert them to audio-rate
 ;because the UDO requires that
@@ -133,7 +133,7 @@ id1	=p3*.2
 id2	=p3*.6
 iseg1	=p3-0.05
 iseg2	=0.05
-arra[]	init gi_nchnls4	;input/output FOA audio signals array
+arra[]	init nchnls	;input/output FOA audio signals array
 	;please see comments in file FOA_ATK_Transforms.udo of the temporary (not-idel) use of gi_chnls4. It's value is 4.
 ;here we don't change the direction angles, but we need to convert them to audio-rate
 ;because the UDO requires that
@@ -165,7 +165,7 @@ id1	=p3*.2
 id2	=p3*.6
 iseg1	=p3-0.05
 iseg2	=0.05
-arra[]	init gi_nchnls4	;input/output FOA audio signals array
+arra[]	init nchnls	;input/output FOA audio signals array
 	;please see comments in file FOA_ATK_Transforms.udo of the temporary (not-idel) use of gi_chnls4. It's value is 4.
 ;here we don't change the direction angles, but we need to convert them to audio-rate
 ;because the UDO requires that

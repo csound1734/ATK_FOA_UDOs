@@ -41,12 +41,6 @@ However, because of performance reasons in the Csound environment, the code was 
 variables for the transforms coefficients.   
 */
 
-/* BEGIN AMENDMENT- a quick-and-dirty (breaks true ambisonic fidelity) mod
- * for the purposes of allowing stereo playback for initial testing only.
- * the ambisonic algorithms do not work as intended as a result. gi_chnls4
- * is set to a constant value of 4 and replaces nchnls in the code that follows. */
-          gi_nchnls4 = 4
-          ;END
 ;numerical constants  
 gipi 		init 	4.*taninv(1.)	;the honorable PI and his family
 gipi2		init	2.*gipi
@@ -137,7 +131,7 @@ output args: aFOAo[]
 opcode 	FOArtt_a, a[], a[]ia;  
 	
 	aFOAi[], iAx, aAng  xin ;read in arguments
-	aFOAo[] init gi_nchnls4
+	aFOAo[] init nchnls
 	;precompute to save operations
 	aCosa=cos(aAng)
 	aSina=sin(aAng)
@@ -178,7 +172,7 @@ Comments (adapted from  https://github.com/ambisonictoolkit/atk-sc3/blob/master/
 opcode 	FOAdirectO_a, a[], a[]a
    
 	aFOAi[], aTheta  xin ;read in arguments
-	aFOAo[] init gi_nchnls4
+	aFOAo[] init nchnls
 	;do directivity transform along all the soundfield
 	aG0=sqrt(1 + sin(aTheta))
 	aG1=sqrt(1 - sin(aTheta))
@@ -215,7 +209,7 @@ and can be regarded as a kind of 'spatial sharpening' filter on the  selected ax
 */
 opcode 	FOAdirect_a, a[], a[]aaa
    
-	aFOAo[] init gi_nchnls4
+	aFOAo[] init nchnls
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
@@ -258,7 +252,7 @@ gain invert this distortion, distorting the image towards
 opcode 	FOAdominate_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aGain  xin ;read in arguments
-	aFOAo[] init gi_nchnls4
+	aFOAo[] init nchnls
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do dominance transform along the x axis
@@ -301,7 +295,7 @@ results in no change.
 opcode 	FOAzoom_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init gi_nchnls4	
+	aFOAo[] init nchnls
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do zoom transform along the x axis
@@ -343,7 +337,7 @@ results in no change.
 opcode 	FOAfocus_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init gi_nchnls4	
+	aFOAo[] init nchnls
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do focus transform along the x axis
@@ -386,7 +380,7 @@ Theta: the angle of distortion in radians, from -pi/2 to pi/2.
 opcode 	FOApush_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init gi_nchnls4	
+	aFOAo[] init nchnls
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do push transform along the x axis
@@ -429,7 +423,7 @@ Theta: the angle of distortion in radians, from -pi/2 to pi/2.
 opcode 	FOApress_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init gi_nchnls4	
+	aFOAo[] init nchnls
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do press transform along the x axis
