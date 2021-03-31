@@ -26,12 +26,12 @@ The current available UDOs Tranforms are:
  
 * B.1-`FOAdirect_a` apply directivity towards a specified direction, a-rate
 * B.2-`FOAdominate_a` dominates the soundfield towards a specified direction, a-rate
-* B.3-`FOAzoom_a			zooms the soundfield towards a specified direction, a-rate
-* B.4-`FOAfocus_a			focus the soundfield towards a specified direction, a-rate
-* B.5-`FOApush_a			pushes the soundfield towards a specified direction, a-rate	
-* B.6-`FOApress_a			presses the soundfield towards a specified direction, a-rate
+* B.3-`FOAzoom_a` zooms the soundfield towards a specified direction, a-rate
+* B.4-`FOAfocus_a` focus the soundfield towards a specified direction, a-rate
+* B.5-`FOApush_a` pushes the soundfield towards a specified direction, a-rate	
+* B.6-`FOApress_a` presses the soundfield towards a specified direction, a-rate
 	todo:
-* B.7-`FOAmirror_a		mirrors the soundfield towards a specified direction, a-rate
+* B.7-`FOAmirror_a` mirrors the soundfield towards a specified direction, a-rate
  
 Check each transform comments in order to see the type, range and meaning of their arguments.
  
