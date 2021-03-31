@@ -48,11 +48,7 @@ gipio2		init	gipi/2.
 					;some other constants
 gisqrt2		init	sqrt(2.)
 girec_sqrt2	init	1. / sqrt(2.)	
-girec_sqrt8	init	1. / sqrt(8.)	
-
-
-gSfilename 	= "Stravinsky.wav"	;input FOA B-Format file for testing 
-;source http://ambisonia.com/Members/ajh/ambisonicfile.2006-09-06.2014008935/
+girec_sqrt8	init	1. / sqrt(8.)
 
 ;macros of constants
 #define		ORD1	#4#
@@ -252,7 +248,7 @@ gain invert this distortion, distorting the image towards
 opcode 	FOAdominate_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aGain  xin ;read in arguments
-	aFOAo[] init nchnls
+	aFOAo[] init 4
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do dominance transform along the x axis
@@ -295,7 +291,7 @@ results in no change.
 opcode 	FOAzoom_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init nchnls
+	aFOAo[] init 4
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do zoom transform along the x axis
@@ -337,7 +333,7 @@ results in no change.
 opcode 	FOAfocus_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init nchnls
+	aFOAo[] init 4
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do focus transform along the x axis

@@ -52,6 +52,9 @@ ksmps 	= 32
 nchnls 	= 4		;FOA signals are four, don't change this
 0dbfs	= 1
 
+gSfilename 	= "$FILEI"	;input FOA B-Format file for testing 
+;source http://ambisonia.com/Members/ajh/ambisonicfile.2006-09-06.2014008935/
+
 #include "FOA_ATK_Transforms.udo" ; a file that contains much of the FOA_ATK code
 
 ;Testing instruments
@@ -133,7 +136,7 @@ id1	=p3*.2
 id2	=p3*.6
 iseg1	=p3-0.05
 iseg2	=0.05
-arra[]	init nchnls	;input/output FOA audio signals array
+arra[]	init 4	;input/output FOA audio signals array
 	;please see comments in file FOA_ATK_Transforms.udo of the temporary (not-idel) use of gi_chnls4. It's value is 4.
 ;here we don't change the direction angles, but we need to convert them to audio-rate
 ;because the UDO requires that
@@ -210,19 +213,20 @@ endin
 #define		D2	#10.845#
 
 ;UNCOMMENT EACH BLOCK TO TEST EACH TRANSFORM
-/*
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;FOArtt_a test
 ;Here the angle is delivered in normalized values from 0 (0 radians) to 1 (PI) and
 ;is converted to radians by the instrument called.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;			st	dur	amp	axis	ang1	ang2
-i	"rtt_a"		0	$D2	.707	$TUM	0	0	;unchanged
-i	"rtt_a"		+	$D2	.	$ROT	0	2	;rotation
-i	"rtt_a"		+	$D2	.	$TIL	0	2	;tilting
-i	"rtt_a"		+	$D2	.	$TUM	0	2	;tumbling
-*/
-/*
+i	"rtt_a"		0	$D2	.707	$ROT	0	2	;unchanged
+i	"rtt_a"		+	$D2	.	$TIL	.5	.5	;rotation
+i	"rtt_a"		+	$D2	.	$ROT	.5	.5	;tilting
+i	"rtt_a"		+	$D2	.	$TIL	1	1	;tumbling
+
+b [4*$D2]
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;FOAdirectO_a tests
 ;warning: directivity strength must lie between 0 and PI/2
@@ -230,12 +234,12 @@ i	"rtt_a"		+	$D2	.	$TUM	0	2	;tumbling
 ;is converted to radians by the instrument called.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;			st	dur	amp	theta1	theta2
-i	"directO_a"	0	$D2	.701	0	0	;unchanged
+i	"directO_a"	0	$D2	.701	0.5	0.5	;
 ;			st	dur	amp	theta1	ang2
-i	"directO_a"	+	$D2	.701	0.5	.5	;only W signal
+i	"directO_a"	+	$D2	.701	1.0	0.5	;
 ;			st	dur	amp	theta1	ang2
-i	"directO_a"	+	$D2	.701	0	.5	;transition from original soundfield to mono
-*/
+i	"directO_a"	+	$D2	.701	0.5	1.33	;
+
 /*
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;FOAdirect_a tests
@@ -247,11 +251,11 @@ i	"directO_a"	+	$D2	.701	0	.5	;transition from original soundfield to mono
 ;			st	dur	amp	azim	elev	theta1	theta2
 i	"direct_a"	0	$D2	.701	0.	0.	0	0	;unchanged
 ;			st	dur	amp	azim	elev	theta1	ang2
-i	"direct_a"	+	$D2	.701	0.	.	.5	-.5	;aiming Y
+i	"direct_a"	+	$D2	.701	0.	.	.95	-.5	;aiming Y
 ;			st	dur	amp	azim	elev	theta1	theta2
-i	"direct_a"	+	$D2	.701	0.5	.	.5	-.5	;aiming Y
+i	"direct_a"	+	$D2	.701	0.5	.	.95	-.5	;aiming Y
 ;			st	dur	amp	azim	elev	theta1	theta2
-i	"direct_a"	+	$D2	.701	0.	.5	.5	-.5	;aiming Z
+i	"direct_a"	+	$D2	.701	0.5	.	.95	-.5	;aiming Z
 */
 /*
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -267,7 +271,8 @@ i	"dominate_a"	+	$D2	0.3	0.5	0.	12	-12	;aiming Y
 ;			st	dur	amp	azim	elev	gain1	gain2
 i	"dominate_a"	+	$D2	0.3	0.	0.5	12	-12	;aiming Z
 */
-/*
+
+b [8*$D2]
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;FOAzoom_a tests
 ;warning: zoom strength must lie between -PI/2 and PI/2 
@@ -282,7 +287,7 @@ i	"zfpp_a"	+	$D2	.	.	.	.5	-.5	$ZOOM    ;Aiming X
 i	"zfpp_a"	+	$D2	.	0.5	0.0	.	-.5	$ZOOM    ;Aiming Y
 ;			st	dur	amp	azim	elev	theta1	theta2	transform	
 i	"zfpp_a"	+	$D2	.	0.0	0.5	.	-.5	$ZOOM    ;Aiming Z
-*/
+
 /*
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;FOAfocus_a tests
