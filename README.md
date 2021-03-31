@@ -47,7 +47,9 @@ variables for the transforms coefficients.
 
 ### FOA_ATK (1.)
 `arro[] FOArtt_a arri[], iAxis, iAng`
+<br>
 `arro[] FOAdirect0_a arri[], aTheta`
+<br>
 
 
 ### ambisonicambi/ (2.)
