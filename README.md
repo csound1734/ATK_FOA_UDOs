@@ -46,9 +46,18 @@ variables for the transforms coefficients.
 ## Csound UDOs
 
 ### FOA_ATK (1.)
-`arro[] FOArtt_a arri[], iAxis, iAng`
+
+`ao[] FOArtt_a ai[], iX, iG`
 <br>
-`arro[] FOAdirect0_a arri[], aTheta`
+`ao[] FOAdirect0_a ai[], aT`
+<br>
+`ao[] FOAdirect_a ai[], aZ, aL, aT`
+<br>
+`ao[] FOAdominate_a ai[], aZ, aL, aA`
+<br>
+`ao[] FOAfocus_a ai[], aZ, aL, aT`
+<br>
+`ao[] FOAzoom_a ai[], aZ, aL, aT`
 <br>
 
 
