@@ -15,7 +15,7 @@ For an explanation of the transforms, as well as plots of almost all of these, [
  
 The current available UDOs Tranforms are:
  
-### A-Full soundfield transforms UDOs
+A-Full soundfield transforms UDOs
 (where the transform is applied to the complete soundfield)
  
 * A.1-`FOArtt_a` rotates, tilts, tumbles, a-rate
@@ -24,7 +24,7 @@ The current available UDOs Tranforms are:
 	todo:
 * A.3-`FOAmirrorO_a` mirrors the soundfield towards a specified direction, a-rate
  
-### B-"Aimed" transforms UDOs
+B-"Aimed" transforms UDOs
 (where the user specifies the direction (azimuth, elevation) towards which the transform will be performed)
  
 * B.1-`FOAdirect_a` apply directivity towards a specified direction, a-rate
