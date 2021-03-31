@@ -1,6 +1,4 @@
-`
 
-/*
 FOA ATK Transforms.
 By Oscar Pablo Di Liscia. Research Program STSEAS, Escuela Universitaria de Musica, UNQ, Argentina. 
 PICT 2015-2604 FONCyT Argentina
@@ -39,9 +37,7 @@ Check each transform comments in order to see the type, range and meaning of the
 NB: The author is aware that the use of matrices holding the transforms coefficients
 may result in a more neat and readable code. 
 However, because of performance reasons in the Csound environment, the code was written using single 
-variables for the transforms coefficients.   
-*/
-`
+variables for the transforms coefficients.
 
 ## Csound UDOs
 
