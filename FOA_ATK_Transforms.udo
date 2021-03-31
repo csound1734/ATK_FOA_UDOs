@@ -1,4 +1,4 @@
-<CsoundSynthesizer>
+
 /*
 FOA ATK Transforms.
 By Oscar Pablo Di Liscia. Research Program STSEAS, Escuela Universitaria de Musica, UNQ, Argentina. 
