@@ -27,7 +27,7 @@
 <CsInstruments>
 
 sr	=	48000
-ksmps	=	1
+ksmps	=	512
 nchnls	=	2 ;decodes from a 4-channel B-format input to stereo
 0dbfs	=	1
 
@@ -97,13 +97,34 @@ arrs bformdec2 2, arri
 outs arrs[0], arrs[1];WRITE OUTPUT
  endin
 
+ instr 5	
+arri[] init 4   ;FOR INPUT
+arr1[] init 4   ;FOR TRANSFORM
+arr2[] init 4   ;2ND TRANSFORM
+arrs[] init 2   ;FOR OUTPUT
+arri diskin2 p4, 1 ;READ FILE IN
+/* NEXT LINE LFO AZIMUTH */
+kAzimuth jitter $M_PI/2, 1/10, 1/5
+aAzimuth upsamp kAzimuth
+printk .5, kAzimuth, 10
+/* NEXT LINE LFO ELEVATION */
+kElevation jitter $M_PI/4, 1/10, 1/6
+aElevation = kElevation + $M_PI/4
+printk .5, kElevation, 20
+/* NEXT LINE APPLY TRNSFRM */
+;arr1 FOArtt_a      arri, $TIL, aAzimuth
+arr2 FOAzoom_a     arri, aAzimuth, a(0), -a($M_PI/3)
+/* NEXT LINE DOES DECODING*/
+arrs bformdec2 21, arr2, 0, .5, 400, 0, "hrtf/hrtf-48000-left.dat", "hrtf/hrtf-48000-right.dat"
+outs arrs[0], arrs[1];WRITE OUTPUT
+ endin
 </CsInstruments>
 ; ==============================================
 <CsScore>
 f 101 0 64 -2 0  0 0   90 0   0 90   0 0  0 0  0 0 ;copied directly from source
 ;    giAmbiFn = 101
 
-i 4 0 z "$FILEI"
+i 5 0 z "$FILEI"
 
 </CsScore>
 </CsoundSynthesizer>

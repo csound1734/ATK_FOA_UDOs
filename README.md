@@ -66,3 +66,7 @@ variables for the transforms coefficients.
 ## Other
 
 * Stravinsky.wav B-format sound recording usually read from disk using the `diskin` opcode
+
+## Sources
+
+* [379998.wav - Link to freesound.org](https://freesound.org/people/drewhalasz/sounds/379998/)
