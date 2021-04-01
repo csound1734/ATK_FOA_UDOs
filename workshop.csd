@@ -1,3 +1,24 @@
+/* an example ambisonics
+ * decoder file. pass the name
+ * of a 4-channel (WXYZ) B-
+ * format file like this:
+ * —smacro:FILEI=recording.wav
+ * There are three decoders:
+ *  -Instr 1: bformdec1.
+ *    Csound’s “improved”
+ *    decoder opcode.
+ *  -Instr 2: ambi_dec_inph
+ *    Just plain decoding,
+ *    now using a decoder udo
+ *    from a different source
+ *  -Instr 3: experimental
+ *    Used the same decoder
+ *    as Instr 2 but adds one
+ *    of the FOA opcodes to
+ *    transform soundfield 
+*\
+
+
 <CsoundSynthesizer>
 <CsOptions>
 </CsOptions>
