@@ -1,5 +1,16 @@
 # Ambisonic experimentation repo for Csound
 
+First, [install the advanced ambisonic decoder (bformdec2) opcode](https://github.com/pzinemanas/bformdec2). You can clone the repo and follow the diretcions on Mac, Linux, Windows:
+`>git clone https://github.com/pzinemanas/bformdec2.git`
+
+`bformdec2` is a depedency of this project. After installing `bformdec2` run:
+
+Try running this from the command line:
+
+`>csound workshop.csd --smacro:FILEI=37998.wav --opcode-lib=/Path/to/bformdec2.so`
+
+Of course, depending on your operating system, replace bformdec2.so with bformdec2.dylib or similar. This is documented in bformdec2 repo.
+
 ## Ambisonic sound fields
 
 ## More about the opcode library used 
