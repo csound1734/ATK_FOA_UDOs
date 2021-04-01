@@ -38,7 +38,9 @@ zakinit 25, 25
 #include "FOA_ATK_Transforms.udo"
 #include "ambisonicambi/ambisonics_udos.txt"
 
+/***************************/
 /* csound built-in decoder */
+/***************************/
  instr 1	
 arri[] init 4   ;FOR INPUT
 arri diskin2 p4 ;READ FILE IN
@@ -47,7 +49,9 @@ aL, aR bformdec1 1, arri[0], arri[1], arri[2], arri[3]
 outs aL, aR     ;WRITE OUTPUT
  endin
 
+/**********************/
 /* Zurich decoder udo */
+/**********************/
  instr 2
 arri[] init 4    ;FOR INPUT
 arri diskin2 p4  ;READ FILE IN
@@ -61,8 +65,9 @@ aL, aR ambi_dec_inph 1, giAmbiFn
 outs aL, aR      ;WRITE OUTPUT
  endin
 
-
+/****************/
 /* EXPERIMENTAL */
+/****************/
  instr 3
 arri1[] init 4
 arri[] init 4
