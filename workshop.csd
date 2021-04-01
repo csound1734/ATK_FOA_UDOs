@@ -15,8 +15,7 @@
  *    Used the same decoder
  *    as Instr 2 but adds one
  *    of the FOA opcodes to
- *    transform soundfield 
-*/
+ *    transform soundfield */
 
 
 <CsoundSynthesizer>
