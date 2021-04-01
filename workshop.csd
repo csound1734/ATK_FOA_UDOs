@@ -71,21 +71,31 @@ outs aL, aR      ;WRITE OUTPUT
  instr 3
 arri1[] init 4
 arri[] init 4
-arri1 diskin2 p4, 0.5, 60
+arri1 diskin2 p4
 /* NEXT LINE LFO AZIMUTH */
-aAzimuth oscil $M_PI, 1/8
+aAzimuth = $M_PI*phasor:a(1/11)
+aTheta   = .5*$M_PI*oscil:a(1,1/4)
+printk .5, k(aAzimuth)
 /* NEXT LINE APPLY TRNSFRM */
-arri FOAfocus_a arri1, aAzimuth, a($M_PI/7), a($M_PI*.5)
+arri FOAzoom_a     arri1, aAzimuth, a($M_PI/2), -a($M_PI/3)
 zacl 0, 3        ;ZERO ACCUM
-zawm arri1[0], 0 ;ACCUM W CHN
-zawm arri1[1], 1 ;ACCUM X CHN
-zawm arri1[2], 2 ;ACCUM Y CHN
-zawm arri1[3], 3 ;ACCUM Z CHN
+zawm arri[0], 0 ;ACCUM W CHN
+zawm arri[1], 1 ;ACCUM X CHN
+zawm arri[2], 2 ;ACCUM Y CHN
+zawm arri[3], 3 ;ACCUM Z CHN
 /* NEXT LINE DOES DECODING */
 aL, aR ambi_dec_inph 1, giAmbiFn
 outs aL*db(0), aR*db(0)
  endin
 
+ instr 4	
+arri[] init 4   ;FOR INPUT
+arrs[] init 2   ;FOR OUTPUT
+arri diskin2 p4, .5 ;READ FILE IN
+/* NEXT LINE DOES DECODING*/
+arrs bformdec2 2, arri
+outs arrs[0], arrs[1];WRITE OUTPUT
+ endin
 
 </CsInstruments>
 ; ==============================================
@@ -93,7 +103,7 @@ outs aL*db(0), aR*db(0)
 f 101 0 64 -2 0  0 0   90 0   0 90   0 0  0 0  0 0 ;copied directly from source
 ;    giAmbiFn = 101
 
-i 3 0 z "$FILEI"
+i 4 0 z "$FILEI"
 
 </CsScore>
 </CsoundSynthesizer>

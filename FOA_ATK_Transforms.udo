@@ -127,7 +127,7 @@ output args: aFOAo[]
 opcode 	FOArtt_a, a[], a[]ia;  
 	
 	aFOAi[], iAx, aAng  xin ;read in arguments
-	aFOAo[] init nchnls
+	aFOAo[] init 4
 	;precompute to save operations
 	aCosa=cos(aAng)
 	aSina=sin(aAng)
@@ -168,7 +168,7 @@ Comments (adapted from  https://github.com/ambisonictoolkit/atk-sc3/blob/master/
 opcode 	FOAdirectO_a, a[], a[]a
    
 	aFOAi[], aTheta  xin ;read in arguments
-	aFOAo[] init nchnls
+	aFOAo[] init 4
 	;do directivity transform along all the soundfield
 	aG0=sqrt(1 + sin(aTheta))
 	aG1=sqrt(1 - sin(aTheta))
@@ -376,7 +376,7 @@ Theta: the angle of distortion in radians, from -pi/2 to pi/2.
 opcode 	FOApush_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init nchnls
+	aFOAo[] init 4
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do push transform along the x axis
@@ -419,7 +419,7 @@ Theta: the angle of distortion in radians, from -pi/2 to pi/2.
 opcode 	FOApress_a, a[], a[]aaa
    
 	aFOAi[], aAzi, aEle, aTheta  xin ;read in arguments
-	aFOAo[] init nchnls
+	aFOAo[] init 4
 	;rotate/tumble the soundfield, so as the direction of interest (azi, ele) becomes 0,0
 	$I_ROT_M
 	;do press transform along the x axis
