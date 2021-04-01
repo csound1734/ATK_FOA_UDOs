@@ -1,4 +1,5 @@
-/* an example ambisonics
+/*****************************
+ * an example ambisonics
  * decoder file. pass the name
  * of a 4-channel (WXYZ) B-
  * format file like this:
@@ -15,7 +16,8 @@
  *    Used the same decoder
  *    as Instr 2 but adds one
  *    of the FOA opcodes to
- *    transform soundfield */
+ *    transform soundfield 
+ ****************************/
 
 
 <CsoundSynthesizer>
