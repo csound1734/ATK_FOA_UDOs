@@ -38,37 +38,45 @@ zakinit 25, 25
 #include "FOA_ATK_Transforms.udo"
 #include "ambisonicambi/ambisonics_udos.txt"
 
+/* csound built-in decoder */
  instr 1	
-arri[] init 4
-arri diskin2 p4
-aL, aR bformdec1 1, arri[0], arri[1], arri[2], arri[3] ;WXYZ - to - LR decoder (-+ 90 MS)
-outs aL, aR
+arri[] init 4   ;FOR INPUT
+arri diskin2 p4 ;READ FILE IN
+/* NEXT LINE DOES DECODING*/
+aL, aR bformdec1 1, arri[0], arri[1], arri[2], arri[3]
+outs aL, aR     ;WRITE OUTPUT
  endin
 
+/* Zurich decoder udo */
  instr 2
-arri[] init 4
-arri diskin2 p4
-zacl 0, 3
-zawm arri[0], 0
-zawm arri[1], 1
-zawm arri[2], 2
-zawm arri[3], 3
+arri[] init 4    ;FOR INPUT
+arri diskin2 p4  ;READ FILE IN
+zacl 0, 3        ;CLEAR ACCUM
+zawm arri[0], 0  ;ACCUM W CHN
+zawm arri[1], 1  ;ACCUM X CHN
+zawm arri[2], 2  ;ACCUM Y CHN
+zawm arri[3], 3  ;ACCUM Z CHN
+/* NEXT LINE DOES DECODING */
 aL, aR ambi_dec_inph 1, giAmbiFn
-outs aL, aR
+outs aL, aR      ;WRITE OUTPUT
  endin
 
+
+/* EXPERIMENTAL */
  instr 3
 arri1[] init 4
 arri[] init 4
 arri1 diskin2 p4, 0.5, 60
-aAzimuth oscil $M_PI, 1/8 ;sweeping azimuth for FOAfocus_a transform
-printk 0.15, k(aAzimuth), 20
+/* NEXT LINE LFO AZIMUTH */
+aAzimuth oscil $M_PI, 1/8
+/* NEXT LINE APPLY TRNSFRM */
 arri FOAfocus_a arri1, aAzimuth, a($M_PI/7), a($M_PI*.5)
-zacl 0, 3
-zawm arri1[0], 0
-zawm arri1[1], 1
-zawm arri1[2], 2
-zawm arri1[3], 3
+zacl 0, 3        ;ZERO ACCUM
+zawm arri1[0], 0 ;ACCUM W CHN
+zawm arri1[1], 1 ;ACCUM X CHN
+zawm arri1[2], 2 ;ACCUM Y CHN
+zawm arri1[3], 3 ;ACCUM Z CHN
+/* NEXT LINE DOES DECODING */
 aL, aR ambi_dec_inph 1, giAmbiFn
 outs aL*db(0), aR*db(0)
  endin
